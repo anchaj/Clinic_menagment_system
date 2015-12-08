@@ -1,0 +1,125 @@
+            
+            #map {
+                width: 600px;
+                height: 400px;
+            }
+
+            #rotating-item-wrapper {
+            	position: relative;
+            	width:  600px;
+            	height: 400px;
+            }
+            
+            
+            .doctors{
+                max-width:200px; 
+                height:auto;
+            }
+            
+            .rotating-item {
+            	display: none;
+            	position: absolute;
+            	top: 0;
+            	left: 0;
+            	text-align:center;
+            	width:1000px;
+            }
+        
+            body {
+                background-image: url("images/background2.jpg");
+                background-color: #cccccc;
+                border-image-repeat: round;
+                text-align: center;
+            }
+            
+            #header {
+                background:url(images/header.jpg) repeat-x;
+                background-size:100%;
+                background-color:gray;
+                color:white;
+                text-align:left;
+                padding:5px;
+                width: 1000px;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid white;
+                
+            }
+            
+            #content {
+                background:url(images/content.gif);
+                background-repeat: no-repeat;
+                background-size:100% 100%;
+                margin-top: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid white;
+                text-align:left;
+                background-color:gray;
+                color:white;
+                padding: 5px;
+                width: 1000px;
+            }
+            
+            #contentRight {
+                background:url(images/content.gif);
+                background-repeat: no-repeat;
+                background-size:100% 100%;
+                margin-top: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid white;
+                text-align:right;
+                background-color:gray;
+                color:white;
+                padding: 5px;
+                width: 1000px;
+            }
+            
+            #contentClinic {
+                background:url(images/content.gif);
+                background-repeat: no-repeat;
+                background-size:100% 100%;
+                margin-top: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid white;
+                text-align:center;
+                background-color:gray;
+                color:white;
+                padding: 5px;
+                width: 1000px;
+                height:316px;
+            }
+            
+            #menu li {
+                display:inline;
+                text-decoration: none;
+            }
+            
+            .myButton {
+            	display:inline-block;
+            	cursor:pointer;
+            	color:#ffffff;
+            	text-align:center;
+            	font-family:Arial;
+            	font-size:20px;
+            	font-weight:bold;
+            	padding:15px 30px;
+            	text-decoration:none;
+            	min-width: 11.70%;
+
+            }
+            .myButton:hover {
+            	background-color:#000000;
+            }
+            .myButton:active {
+            	position:relative;
+            	top:1px;
+            }
+            
+            #container {
+                width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
