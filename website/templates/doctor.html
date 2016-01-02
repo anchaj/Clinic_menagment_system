@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +9,7 @@
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
         
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
     </head>
     
     <body>
@@ -27,7 +28,7 @@
         <div id="content">
             <table style="width:100%">
                 <tr>
-                    <td><img class="doctors" src="doctors/kowalski.jpg" alt="pic2"></td>
+                    <td><img class="doctors" src="{% static 'doctors/kowalski.jpg' %}" alt="pic2"></td>
                     <td style="vertical-align:top">
                         <table>
                             <tr><td><h2>Education</h2></td></tr>
@@ -88,7 +89,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td><img class="doctors" src="doctors/krawczyk.jpg" alt="pic2"></td>
+                    <td><img class="doctors" src="{% static 'doctors/krawczyk.jpg' %}" alt="pic2"></td>
                 </tr>
             </table>
         </div>
@@ -96,7 +97,7 @@
         <div id="content">
             <table style="width:100%">
                 <tr>
-                    <td><img class="doctors" src="doctors/ojczyk.jpg" alt="pic2"></td>
+                    <td><img class="doctors" src="{% static 'doctors/ojczyk.jpg' %}" alt="pic2"></td>
                     <td style="vertical-align:top">
                         <table>
                             <tr><td><h2>Education</h2></td></tr>

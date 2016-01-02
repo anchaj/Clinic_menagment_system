@@ -1,5 +1,5 @@
 
-
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +9,7 @@
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
     </head>
     
     <body>
@@ -30,7 +30,7 @@
                     <div class="rotating-item">
                         <table style="width:100%">
                             <tr>
-                                <td><img src="images/pic1.jpg" alt="pic2" width="600" height="400" /></td>
+                                <td><img src="{% static 'images/pic1.jpg' %}" alt="pic2" width="600" height="400" /></td>
                                 <td><span style="float:left; width:200; min-width:100%;">Our volunteers are dedicated to helping others. People who choose to volunteer at Mayo Clinic are attracted to our healing mission and our commitment to the needs of patients and their families.</span></td>
                             </tr>
                         </table>
@@ -39,7 +39,7 @@
                     <div class="rotating-item">
                         <table>
                             <tr>
-                                <td><img src="images/pic2.jpg" alt="pic2" width="600" height="400" /></td>
+                                <td><img src="{% static 'images/pic2.jpg' %}" alt="pic2" width="600" height="400" /></td>
                                 <td><span>International services help ensure that distance and language are not obstacles to receiving world-class care.</span></td>
                             </tr>
                         </table>
@@ -48,7 +48,7 @@
                     <div class="rotating-item">
                         <table>
                             <tr>
-                                <td><img src="images/pic3.jpg" alt="pic2" width="600" height="400" /></td>
+                                <td><img src="{% static 'images/pic3.jpg' %}" alt="pic2" width="600" height="400" /></td>
                                 <td><span>We believe that everyone possesses his/her own inner healer and it is our role to facilitate this healer. By deeply listening to each person’s story, we identify the root cause of each patient’s symptoms. We then design a customized healing plan that is tailored to meet his or her unique needs. Through educating people about food as medicine, movement therapy, and stress reduction, we empower both children and adults to permanently transform their health, experiencing renewed peace, strength, and vitality</span></td>
                             </tr>
                         </table>
@@ -57,7 +57,7 @@
                     <div class="rotating-item">
                         <table>
                             <tr>
-                                <td><img src="images/pic4.jpg" alt="pic2" width="600" height="400" /></td>
+                                <td><img src="{% static 'images/pic4.jpg' %}" alt="pic2" width="600" height="400" /></td>
                                 <td><span style="float:left; width:100%; min-width:100%;">During pregnancy, exercise can help you stay in shape and prepare for labor and delivery. Here's the lowdown on pregnancy and exercise, from getting started to staying motivated.</span></td>
                             </tr>
                         </table>
@@ -74,19 +74,19 @@
             }
                 
             function onClinicClick(){
-                window.location = "clinic.html"
+                window.location = "clinic.html";
             }
             
             function onDoctorClick() {
-                window.location = "doctor.html"
+                window.location = "doctor.html";
             }
             
             function onPricingClick() {
-                window.location = "pricing.html"
+                window.location = "pricing.html";
             }
             
             function onContactClick() {
-                window.location = "contact.html"
+                window.location = "contact.html";
             }
             
             document.getElementById("HomeButton").onclick = onHomeClick;
