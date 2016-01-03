@@ -1,213 +1,162 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <!--<meta http-equiv = "refresh" content = "5"> -->
-        <title>Medical Clinic</title>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        
-        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
-    </head>
-    
-    <body>
-        <div id="container">
-            <div id="header"> <h1 style="text-align: center;">OurClinic</h1> 
-                <ul id="menu">
-                    <li><a class="myButton" id="HomeButton">Home</a></li>
-                    <li><a class="myButton" id="ClinicButton">Clinic</a></li>
-                    <li><a class="myButton" id="DoctorsButton">Doctors</a></li>
-                    <li><a class="myButton" id="PricingButton">Pricing</a></li>
-                    <li><a class="myButton" id="ContactButton">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div id="content">
-            <table style="width:100%">
-                <tr>
-                    <td><img class="doctors" src="{% static 'doctors/kowalski.jpg' %}" alt="pic2"></td>
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr><td><h2>Education</h2></td></tr>
-                            <tr><td><h3>MD</h3></td></tr>
-                            <tr><td><a>Alpert Medical School-Brown University</a></td></tr>
-                            <tr><td><h3>BS - Biology and Chemistry</h3></td></tr>
-                            <tr><td><a>University of New Mexico</a></td></tr>
-                        </table>
-                    </td>
-                    
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr><td><h2>Certification</h2></td></tr>
-                            <tr><td><a>American Board of Family Practice</a></td></tr>
-                            <tr><td><a>American Board of Internal Medicine</a></td></tr>
-                        </table>
-                    </td>
-                    
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr> <td><h2>Academic rank</h2></td></tr>
-                            <tr>
-                                <td><a>Associate Professor of Family Medicine</a></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        <div id="contentRight">
-            <table style="width:100%">
-                <tr>
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr><td><h2>Education</h2></td></tr>
-                            <tr><td><h3>PhD - Biochemistry</h3></td></tr>
-                            <tr><td><a>Michigan State University</a></td></tr>
-                            <tr><td><h3>MD</h3></td></tr>
-                            <tr><td><a>University of Nebraska Medical Center</a></td></tr>
-                        </table>
-                    </td>
-                    
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr><td><h2>Certification</h2></td></tr>
-                            <tr>
-                                <td><a>Diplomate in Internal Medicine, American Board of Internal Medicine</a></td>
-                            </tr>
-                        </table>
-                    </td>
-                    
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr> <td><h2>Academic rank</h2></td></tr>
-                            <tr>
-                                <td><a>Assistant Professor of Medicine</a></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td><img class="doctors" src="{% static 'doctors/krawczyk.jpg' %}" alt="pic2"></td>
-                </tr>
-            </table>
-        </div>
-        
-        <div id="content">
-            <table style="width:100%">
-                <tr>
-                    <td><img class="doctors" src="{% static 'doctors/ojczyk.jpg' %}" alt="pic2"></td>
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr><td><h2>Education</h2></td></tr>
-                            <tr><td><h3>MD/PhD</h3></td></tr>
-                            <tr><td><a>Pharmacology, Molecular Pharmacology and Experimental Therapeutics, </a></td></tr>
-                            <tr><td><a>Programs, Graduate School, Clinic College of Medicine</a></td></tr>
-                            <tr><td><h3>Resident - Pediatric And Adolescent Medicine</h3></td></tr>
-                            <tr><td><a>Graduate School of Medicine, American Clinic College of Medicine</a></td></tr>
-                        </table>
-                    </td>
-                    
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr><td><h2>Certification</h2></td></tr>
-                            <tr><td><a>American Board of Family Practice</a></td></tr>
-                            <tr><td><a>American Board of Pediatrics - Pediatric Cardiology</a></td></tr>
-                        </table>
-                    </td>
-                    
-                    <td style="vertical-align:top">
-                        <table>
-                            <tr> <td><h2>Academic rank</h2></td></tr>
-                            <tr><td><a>Professor of Medicine</a></td></tr>
-                            <tr><td><a>Professor of Pediatrics</a></td></tr>
-                            <tr><td><a>Professor of Pharmacology</a></td></tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        <div id="content">
-            <style type="text/css">
-            .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto; width:100%;}
-            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:12px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:12px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-            .tg .table_item{text-align:center;vertical-align:top;}
-            </style>
-            <table class="tg">
-              <tr>
-                <th class="table_item"></th>
-                <th class="table_item">Monday</th>
-                <th class="table_item">Tuesday</th>
-                <th class="table_item">Wednesday</th>
-                <th class="table_item">Thursday</th>
-                <th class="table_item">Friday</th>
-                <th class="table_item">Saturday</th>
-                <th class="table_item">Sunday</th>
-              </tr>
-              <tr>
-                <td class="table_item">Jan Kowalski (internist)</td>
-                <td class="table_item">8 - 16</td>
-                <td class="table_item">8 - 16</td>
-                <td class="table_item">8 - 12</td>
-                <td class="table_item">8 - 12</td>
-                <td class="table_item">8 - 16</td>
-                <td class="table_item">8 - 12</td>
-                <th class="table_item"></th>
-              </tr>
-              <tr>
-                <td class="table_item">Justyna Krawczyk (pediatrician)</td>
-                <td class="table_item">7 - 11</td>
-                <td class="table_item">12 - 18</td>
-                <td class="table_item">12 - 18</td>
-                <td class="table_item">12 - 18</td>
-                <td class="table_item">12 - 18</td>
-                <td class="table_item">7 - 11</td>
-                <th class="table_item"></th>
-              </tr>
-              <tr>
-                <td class="table_item">Michal Ojczyk (cardiologist)</td>
-                <td class="table_item">12 - 20</td>
-                <td class="table_item">16 - 20</td>
-                <td class="table_item">8 - 16</td>
-                <td class="table_item">8 - 16</td>
-                <td class="table_item"></td>
-                <td class="table_item"></td>
-                <th class="table_item">8 - 12</th>
-              </tr>
-            </table>
-        </div>
-        
 
-               
-        <script>
-            function onHomeClick() {
-                window.location = "index.html";
-            }
-                
-            function onClinicClick(){
-                window.location = "clinic.html"
-            }
-            
-            function onDoctorClick() {
-                window.location = "doctor.html"
-            }
-            
-            function onPricingClick() {
-                window.location = "pricing.html"
-            }
-            
-            function onContactClick() {
-                window.location = "contact.html"
-            }
-            
-            document.getElementById("HomeButton").onclick = onHomeClick;
-            document.getElementById("ClinicButton").onclick = onClinicClick;
-            document.getElementById("DoctorsButton").onclick = onDoctorClick;
-            document.getElementById("PricingButton").onclick = onPricingClick;
-            document.getElementById("ContactButton").onclick = onContactClick;
-        </script>
-    </body>
-</html>
+{% block contentBlock %}
+    <div id="container">
+
+    <div id="content">
+        <table style="width:100%">
+            <tr>
+                <td><img class="doctors" src="{% static 'doctors/kowalski.jpg' %}" alt="pic2"></td>
+                <td style="vertical-align:top">
+                    <table>
+                        <tr><td><h2>Education</h2></td></tr>
+                        <tr><td><h3>MD</h3></td></tr>
+                        <tr><td><a>Alpert Medical School-Brown University</a></td></tr>
+                        <tr><td><h3>BS - Biology and Chemistry</h3></td></tr>
+                        <tr><td><a>University of New Mexico</a></td></tr>
+                    </table>
+                </td>
+
+                <td style="vertical-align:top">
+                    <table>
+                        <tr><td><h2>Certification</h2></td></tr>
+                        <tr><td><a>American Board of Family Practice</a></td></tr>
+                        <tr><td><a>American Board of Internal Medicine</a></td></tr>
+                    </table>
+                </td>
+
+                <td style="vertical-align:top">
+                    <table>
+                        <tr> <td><h2>Academic rank</h2></td></tr>
+                        <tr>
+                            <td><a>Associate Professor of Family Medicine</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="contentRight">
+        <table style="width:100%">
+            <tr>
+                <td style="vertical-align:top">
+                    <table>
+                        <tr><td><h2>Education</h2></td></tr>
+                        <tr><td><h3>PhD - Biochemistry</h3></td></tr>
+                        <tr><td><a>Michigan State University</a></td></tr>
+                        <tr><td><h3>MD</h3></td></tr>
+                        <tr><td><a>University of Nebraska Medical Center</a></td></tr>
+                    </table>
+                </td>
+
+                <td style="vertical-align:top">
+                    <table>
+                        <tr><td><h2>Certification</h2></td></tr>
+                        <tr>
+                            <td><a>Diplomate in Internal Medicine, American Board of Internal Medicine</a></td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td style="vertical-align:top">
+                    <table>
+                        <tr> <td><h2>Academic rank</h2></td></tr>
+                        <tr>
+                            <td><a>Assistant Professor of Medicine</a></td>
+                        </tr>
+                    </table>
+                </td>
+                <td><img class="doctors" src="{% static 'doctors/krawczyk.jpg' %}" alt="pic2"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="content">
+        <table style="width:100%">
+            <tr>
+                <td><img class="doctors" src="{% static 'doctors/ojczyk.jpg' %}" alt="pic2"></td>
+                <td style="vertical-align:top">
+                    <table>
+                        <tr><td><h2>Education</h2></td></tr>
+                        <tr><td><h3>MD/PhD</h3></td></tr>
+                        <tr><td><a>Pharmacology, Molecular Pharmacology and Experimental Therapeutics, </a></td></tr>
+                        <tr><td><a>Programs, Graduate School, Clinic College of Medicine</a></td></tr>
+                        <tr><td><h3>Resident - Pediatric And Adolescent Medicine</h3></td></tr>
+                        <tr><td><a>Graduate School of Medicine, American Clinic College of Medicine</a></td></tr>
+                    </table>
+                </td>
+
+                <td style="vertical-align:top">
+                    <table>
+                        <tr><td><h2>Certification</h2></td></tr>
+                        <tr><td><a>American Board of Family Practice</a></td></tr>
+                        <tr><td><a>American Board of Pediatrics - Pediatric Cardiology</a></td></tr>
+                    </table>
+                </td>
+
+                <td style="vertical-align:top">
+                    <table>
+                        <tr> <td><h2>Academic rank</h2></td></tr>
+                        <tr><td><a>Professor of Medicine</a></td></tr>
+                        <tr><td><a>Professor of Pediatrics</a></td></tr>
+                        <tr><td><a>Professor of Pharmacology</a></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="content">
+        <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;margin:0 auto; width:100%;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:12px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:12px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+        .tg .table_item{text-align:center;vertical-align:top;}
+        </style>
+        <table class="tg">
+          <tr>
+            <th class="table_item"></th>
+            <th class="table_item">Monday</th>
+            <th class="table_item">Tuesday</th>
+            <th class="table_item">Wednesday</th>
+            <th class="table_item">Thursday</th>
+            <th class="table_item">Friday</th>
+            <th class="table_item">Saturday</th>
+            <th class="table_item">Sunday</th>
+          </tr>
+          <tr>
+            <td class="table_item">Jan Kowalski (internist)</td>
+            <td class="table_item">8 - 16</td>
+            <td class="table_item">8 - 16</td>
+            <td class="table_item">8 - 12</td>
+            <td class="table_item">8 - 12</td>
+            <td class="table_item">8 - 16</td>
+            <td class="table_item">8 - 12</td>
+            <th class="table_item"></th>
+          </tr>
+          <tr>
+            <td class="table_item">Justyna Krawczyk (pediatrician)</td>
+            <td class="table_item">7 - 11</td>
+            <td class="table_item">12 - 18</td>
+            <td class="table_item">12 - 18</td>
+            <td class="table_item">12 - 18</td>
+            <td class="table_item">12 - 18</td>
+            <td class="table_item">7 - 11</td>
+            <th class="table_item"></th>
+          </tr>
+          <tr>
+            <td class="table_item">Michal Ojczyk (cardiologist)</td>
+            <td class="table_item">12 - 20</td>
+            <td class="table_item">16 - 20</td>
+            <td class="table_item">8 - 16</td>
+            <td class="table_item">8 - 16</td>
+            <td class="table_item"></td>
+            <td class="table_item"></td>
+            <th class="table_item">8 - 12</th>
+          </tr>
+        </table>
+    </div>
+
+{% endblock %}

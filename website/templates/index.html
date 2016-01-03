@@ -1,135 +1,81 @@
-
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <!--<meta http-equiv = "refresh" content = "5"> -->
-        <title>Medical Clinic</title>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
-    </head>
-    
-    <body>
-        
-        <div id="container">
-            <div id="header"> <h1 style="text-align: center;">OurClinic</h1> 
-                <ul id="menu">
-                    <li><a class="myButton" id="HomeButton">Home</a></li>
-                    <li><a class="myButton" id="ClinicButton">Clinic</a></li>
-                    <li><a class="myButton" id="DoctorsButton">Doctors</a></li>
-                    <li><a class="myButton" id="PricingButton">Pricing</a></li>
-                    <li><a class="myButton" id="ContactButton">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div id="content">
-                <div id="rotating-item-wrapper">
-                    <div class="rotating-item">
-                        <table style="width:100%">
-                            <tr>
-                                <td><img src="{% static 'images/pic1.jpg' %}" alt="pic2" width="600" height="400" /></td>
-                                <td><span style="float:left; width:200; min-width:100%;">Our volunteers are dedicated to helping others. People who choose to volunteer at Mayo Clinic are attracted to our healing mission and our commitment to the needs of patients and their families.</span></td>
-                            </tr>
-                        </table>
-                    </div> 
+{% block contentBlock %}
+    <div id="container">
 
-                    <div class="rotating-item">
-                        <table>
-                            <tr>
-                                <td><img src="{% static 'images/pic2.jpg' %}" alt="pic2" width="600" height="400" /></td>
-                                <td><span>International services help ensure that distance and language are not obstacles to receiving world-class care.</span></td>
-                            </tr>
-                        </table>
-                    </div> 
+        <div id="content">
+            <div id="rotating-item-wrapper">
+                <div class="rotating-item">
+                    <table style="width:100%">
+                        <tr>
+                            <td><img src="{% static 'images/pic1.jpg' %}" alt="pic2" width="600" height="400" /></td>
+                            <td><span style="float:left; width:200; min-width:100%;">Our volunteers are dedicated to helping others. People who choose to volunteer at Mayo Clinic are attracted to our healing mission and our commitment to the needs of patients and their families.</span></td>
+                        </tr>
+                    </table>
+                </div>
 
-                    <div class="rotating-item">
-                        <table>
-                            <tr>
-                                <td><img src="{% static 'images/pic3.jpg' %}" alt="pic2" width="600" height="400" /></td>
-                                <td><span>We believe that everyone possesses his/her own inner healer and it is our role to facilitate this healer. By deeply listening to each person’s story, we identify the root cause of each patient’s symptoms. We then design a customized healing plan that is tailored to meet his or her unique needs. Through educating people about food as medicine, movement therapy, and stress reduction, we empower both children and adults to permanently transform their health, experiencing renewed peace, strength, and vitality</span></td>
-                            </tr>
-                        </table>
-                    </div> 
-                    
-                    <div class="rotating-item">
-                        <table>
-                            <tr>
-                                <td><img src="{% static 'images/pic4.jpg' %}" alt="pic2" width="600" height="400" /></td>
-                                <td><span style="float:left; width:100%; min-width:100%;">During pregnancy, exercise can help you stay in shape and prepare for labor and delivery. Here's the lowdown on pregnancy and exercise, from getting started to staying motivated.</span></td>
-                            </tr>
-                        </table>
-                    </div> 
+                <div class="rotating-item">
+                    <table>
+                        <tr>
+                            <td><img src="{% static 'images/pic2.jpg' %}" alt="pic2" width="600" height="400" /></td>
+                            <td><span>International services help ensure that distance and language are not obstacles to receiving world-class care.</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="rotating-item">
+                    <table>
+                        <tr>
+                            <td><img src="{% static 'images/pic3.jpg' %}" alt="pic2" width="600" height="400" /></td>
+                            <td><span>We believe that everyone possesses his/her own inner healer and it is our role to facilitate this healer. By deeply listening to each person’s story, we identify the root cause of each patient’s symptoms. We then design a customized healing plan that is tailored to meet his or her unique needs. Through educating people about food as medicine, movement therapy, and stress reduction, we empower both children and adults to permanently transform their health, experiencing renewed peace, strength, and vitality</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="rotating-item">
+                    <table>
+                        <tr>
+                            <td><img src="{% static 'images/pic4.jpg' %}" alt="pic2" width="600" height="400" /></td>
+                            <td><span style="float:left; width:100%; min-width:100%;">During pregnancy, exercise can help you stay in shape and prepare for labor and delivery. Here's the lowdown on pregnancy and exercise, from getting started to staying motivated.</span></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        
-            
         </div>
-        
-        <script>
-            function onHomeClick() {
-                window.location = "index.html";
-            }
-                
-            function onClinicClick(){
-                window.location = "clinic.html";
-            }
-            
-            function onDoctorClick() {
-                window.location = "doctor.html";
-            }
-            
-            function onPricingClick() {
-                window.location = "pricing.html";
-            }
-            
-            function onContactClick() {
-                window.location = "contact.html";
-            }
-            
-            document.getElementById("HomeButton").onclick = onHomeClick;
-            document.getElementById("ClinicButton").onclick = onClinicClick;
-            document.getElementById("DoctorsButton").onclick = onDoctorClick;
-            document.getElementById("PricingButton").onclick = onPricingClick;
-            document.getElementById("ContactButton").onclick = onContactClick;
-            
-        </script>
-        
-        <script>
-            
-            $(window).load(function() {
+    </div>
 
-        	var InfiniteRotator = 
-        	{
-        		init: function()
-        		{
-        			var initialFadeIn = 1000;
-        			var itemInterval = 5000;
-        			var fadeTime = 2500;
-        			var numberOfItems = $('.rotating-item').length;
-        			var currentItem = 0;
-        			$('.rotating-item').eq(currentItem).fadeIn(initialFadeIn);
-        			var infiniteLoop = setInterval(function(){
-        				$('.rotating-item').eq(currentItem).fadeOut(fadeTime);
-        
-        				if(currentItem == numberOfItems -1){
-        					currentItem = 0;
-        				}else{
-        					currentItem++;
-        				}
-        				$('.rotating-item').eq(currentItem).fadeIn(fadeTime);
-        
-        			}, itemInterval);	
-        		}	
-        	};
-        
-        	InfiniteRotator.init();
-        	
-        });
-            
-        </script>
-        
-    </body>
-</html>
+    <script>
+
+        $(window).load(function() {
+
+        var InfiniteRotator =
+        {
+            init: function()
+            {
+                var initialFadeIn = 1000;
+                var itemInterval = 5000;
+                var fadeTime = 2500;
+                var numberOfItems = $('.rotating-item').length;
+                var currentItem = 0;
+                $('.rotating-item').eq(currentItem).fadeIn(initialFadeIn);
+                var infiniteLoop = setInterval(function(){
+                    $('.rotating-item').eq(currentItem).fadeOut(fadeTime);
+
+                    if(currentItem == numberOfItems -1){
+                        currentItem = 0;
+                    }else{
+                        currentItem++;
+                    }
+                    $('.rotating-item').eq(currentItem).fadeIn(fadeTime);
+
+                }, itemInterval);
+            }
+        };
+
+        InfiniteRotator.init();
+
+    });
+
+    </script>
+{% endblock %}

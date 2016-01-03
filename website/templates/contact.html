@@ -1,113 +1,59 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <!--<meta http-equiv = "refresh" content = "5"> -->
-        <title>Medical Clinic</title>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        
-        <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
-        
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        <script>
-          function initialize() {
-            var mapCanvas = document.getElementById('map');
-            var mapOptions = {
-              center: new google.maps.LatLng(50.06, 19.9),
-              zoom: 10,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            var map = new google.maps.Map(mapCanvas, mapOptions)
-          }
-          google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
-        
-        
-    </head>
-    
-    <body>
-        
-        <div id="container">
-            <div id="header"> <h1 style="text-align: center;">OurClinic</h1> 
-                <ul id="menu">
-                    <li><a class="myButton" id="HomeButton">Home</a></li>
-                    <li><a class="myButton" id="ClinicButton">Clinic</a></li>
-                    <li><a class="myButton" id="DoctorsButton">Doctors</a></li>
-                    <li><a class="myButton" id="PricingButton">Pricing</a></li>
-                    <li><a class="myButton" id="ContactButton">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div id="content">
-                <table>
-                    <tr>
-                        <td><div id="map"></div></td>
-                        <td><div>
-                            
-                            <table align="left" border="0" cellpadding="2" cellspacing="2" style="width: 100%;"> 
-                                <tbody> 
-                                    <tr> 
-                                        <td><span style="color:black; font-weight: bold;">Address</span></td> 
-                                        <td> ul. prof. Stanisława Łojasiewicza 6</td> 
-                                    </tr> 
-                                    
-                                    <tr> 
-                                        <td> &nbsp;</td> 
-                                        <td> 30-348 Kraków</td> 
-                                    </tr> 
-                                        
-                                    <tr> 
-                                        <td> <span style="color:black; font-weight: bold;">Telephone</span></td> 
-                                        <td> (+48) 12 664 66 29</td> 
-                                    </tr> 
-                                    
-                                    <tr> 
-                                        <td> <span style="color:black; font-weight: bold;">Fax</span></td> 
-                                        <td> (+48) 12 664 66 75</td> 
-                                    </tr> 
-                                    
-                                    <tr> 
-                                        <td> <span style="color:black; font-weight: bold;">E-mail</span></td> 
-                                        <td> matinf@uj.edu.pl</td> 
-                                    </tr> 
-                                </tbody> 
-                            </table>
-                        </div></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        
-        <script>
-            function onHomeClick() {
-                window.location = "index.html";
-            }
-                
-            function onClinicClick(){
-                window.location = "clinic.html"
-            }
-            
-            function onDoctorClick() {
-                window.location = "doctor.html"
-            }
-            
-            function onPricingClick() {
-                window.location = "pricing.html"
-            }
-            
-            function onContactClick() {
-                window.location = "contact.html"
-            }
-            
-            document.getElementById("HomeButton").onclick = onHomeClick;
-            document.getElementById("ClinicButton").onclick = onClinicClick;
-            document.getElementById("DoctorsButton").onclick = onDoctorClick;
-            document.getElementById("PricingButton").onclick = onPricingClick;
-            document.getElementById("ContactButton").onclick = onContactClick;
-        </script>
-        
-    </body>
-</html>
+
+{% block head %}
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+          center: new google.maps.LatLng(50.06, 19.9),
+          zoom: 10,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+{% endblock %}
+
+{% block contentBlock %}
+    <div id="content">
+        <table>
+            <tr>
+                <td><div id="map"></div></td>
+                <td><div>
+
+                    <table align="left" border="0" cellpadding="2" cellspacing="2" style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td><span style="color:black; font-weight: bold;">Address</span></td>
+                                <td> ul. prof. Stanisława Łojasiewicza 6</td>
+                            </tr>
+
+                            <tr>
+                                <td> &nbsp;</td>
+                                <td> 30-348 Kraków</td>
+                            </tr>
+
+                            <tr>
+                                <td> <span style="color:black; font-weight: bold;">Telephone</span></td>
+                                <td> (+48) 12 664 66 29</td>
+                            </tr>
+
+                            <tr>
+                                <td> <span style="color:black; font-weight: bold;">Fax</span></td>
+                                <td> (+48) 12 664 66 75</td>
+                            </tr>
+
+                            <tr>
+                                <td> <span style="color:black; font-weight: bold;">E-mail</span></td>
+                                <td> matinf@uj.edu.pl</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
