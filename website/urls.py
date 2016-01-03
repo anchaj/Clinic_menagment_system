@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^doctor.html$', views.doctor),
     url(r'^pricing.html$', views.pricing),
     url(r'^contact.html$', views.contact),
-    url(r'^register$', views.register)
+    url(r'^register', views.register)
 ]
 
 urlpatterns += patterns("",

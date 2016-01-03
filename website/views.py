@@ -1,7 +1,8 @@
-from website.models import LoginForm
+from website.models import LoginForm, RegisterForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import *
 from django.template.loader import get_template
+from django.contrib.auth.models import User
 import logging
 # Create your views here.
 
@@ -30,8 +31,8 @@ def try_login(request, current, after_success, after_failed):
             output = template.render(variables)
             logger.info(log_str)
             return HttpResponse(output)
-    else:
-        form = LoginForm()
+    form = LoginForm()
+    logger.info("login get")
     template = get_template(current)
     variables = RequestContext(request, {'form': form})
     output = template.render(variables)
@@ -59,4 +60,33 @@ def contact(request):
 
 
 def register(request):
-    return render("registration/register.html", {})
+    logger = logging.getLogger('django')
+    logger_str = ""
+    if request.method == "POST":
+        try:
+            logger_str += "register post: " + str(request.POST) + " is "
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                logger_str += "valid"
+                user = User.objects.create_user(
+                  username=form.cleaned_data['pesel'],
+                  password=form.cleaned_data['password'],
+                  email=form.cleaned_data['email']
+                )
+                user.save()
+                template = get_template("registration/login.html")
+                variables = RequestContext(request, {})
+                output = template.render(variables)
+                logger.info(logger_str)
+                return HttpResponse(output)
+            else:
+                logger_str += "invalid"
+                logger.info(logger_str)
+                return HttpResponseRedirect("contact.html")
+        finally:
+            logger.info(logger_str)
+    template = get_template("registration/register.html")
+    form = RegisterForm()
+    variables = RequestContext(request, {'form': form})
+    output = template.render(variables)
+    return HttpResponse(output)
