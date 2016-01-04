@@ -10,26 +10,28 @@ import logging
 def try_login(request, current, after_success, after_failed):
     logger = logging.getLogger('django')
     if request.method == 'POST':
-        log_str = ""
         form = LoginForm(request.POST)
+        logger.debug(str(request.POST))
         if form.is_valid():
-            log_str = log_str.join("\nform valid:")
-            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            log_str = log_str.join("username: ").join(form.cleaned_data['username']).join("\n")
-            log_str = log_str.join("password: ").join(form.cleaned_data['password']).join("\n")
-            login(request, user)
-            logger.info("loggin success")
-            template = get_template(after_success)
-            variables = RequestContext(request, {'user': user})
-            output = template.render(variables)
-            logger.info(log_str)
-            return HttpResponseRedirect("/")
+            user = User.objects.get(username=form.cleaned_data['username'])
+
+            if user.check_password(form.cleaned_data['password']):
+                logger.debug("password correct in try_login")
+                user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+                logger.debug("pesel(username): " + form.cleaned_data['username'] + " password: " +
+                            form.cleaned_data['password'] + " hash exist_user: " + form.cleaned_data['password'])
+                login(request, user)
+                logger.debug("loggin success")
+                template = get_template(after_success)
+                variables = RequestContext(request, {'user': user})
+                output = template.rendeforor(variables)
+                return HttpResponseRedirect("/")
+
         else:
-            log_str = log_str.join("\nform invalid")
             template = get_template(after_failed)
             variables = RequestContext(request, {'form': form})
             output = template.render(variables)
-            logger.info(log_str)
+            logger.info("form invalid")
             return HttpResponse(output)
     form = LoginForm()
     logger.info("login get")
@@ -61,30 +63,33 @@ def contact(request):
 
 def register(request):
     logger = logging.getLogger('django')
-    logger_str = ""
     if request.method == "POST":
-        try:
-            logger_str += "register post: " + str(request.POST) + " is "
-            form = RegisterForm(request.POST)
-            if form.is_valid():
-                logger_str += "valid"
-                user = User.objects.create_user(
-                  username=form.cleaned_data['pesel'],
-                  password=form.cleaned_data['password'],
-                  email=form.cleaned_data['email']
-                )
-                user.save()
-                template = get_template("registration/login.html")
-                variables = RequestContext(request, {})
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            logger.debug("register post: " + str(request.POST) + " is valid")
+            user = User.objects.create_user(
+              username=form.cleaned_data['username'],
+              password=form.cleaned_data['password'],
+              email=form.cleaned_data['email']
+            )
+            user.is_active = True
+            user.save()
+            if user.check_password(form.cleaned_data['password']):
+                logger.debug("user password: " + form.cleaned_data['password'] + " hash: " + user.password)
+                logger.debug("username: " + form.cleaned_data['username'])
+                user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+                logger.debug("user after auth: " + str(user))
+                login(request, user)
+                template = get_template("authenticated.html")
+                variables = RequestContext(request, {'user': user})
+                logger.info("User logged in")
                 output = template.render(variables)
-                logger.info(logger_str)
                 return HttpResponse(output)
             else:
-                logger_str += "invalid"
-                logger.info(logger_str)
-                return HttpResponseRedirect("contact.html")
-        finally:
-            logger.info(logger_str)
+                logger.info("Wrong password")
+        else:
+            logger.debug("register post: " + str(request.POST) + " is invalid")
+            return HttpResponseRedirect("contact.html")
     template = get_template("registration/register.html")
     form = RegisterForm()
     variables = RequestContext(request, {'form': form})
