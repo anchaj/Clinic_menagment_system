@@ -1,1 +1,21 @@
 {% extends "base.html" %}
+
+{% block contentBlock %}
+    {% if user.is_authenticated %}
+        <div id="content">
+            <table>
+                <tr>You can change your account data</tr>
+                <form action="change_data.html" method="post"> {% csrf_token %}
+                    <table>{{ form.as_table}}</table>
+                    <input type="submit" value="Change your data">
+                </form>
+
+            </table>
+
+        </div>
+    {% else %}
+        <div id="content">
+            <p>Your are not logged in!!</p>
+        </div>
+    {% endif %}
+{% endblock %}

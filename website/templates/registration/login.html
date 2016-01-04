@@ -1,4 +1,16 @@
 {% extends "base.html" %}
+
 {% block contentBlock %}
-    <div><a>You are logged in!!</a></div>
+    {% if user.is_authenticated %}
+        <div id="content">
+            <p>You will be redirect to your account website</p>
+        </div>
+        <script>
+            window.location.replace("authenticated.html");
+        </script>
+    {% else %}
+        <div id="content">
+            <p>Your are not logged in!!</p>
+        </div>
+    {% endif %}
 {% endblock %}

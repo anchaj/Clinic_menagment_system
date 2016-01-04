@@ -10,16 +10,34 @@
         <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
         {% block head %}
         {% endblock %}
+
+
     </head>
 <body>
     <div id="loginHeader">
-        <form action="." method="post"> {% csrf_token %}
-            <div style="text-align:right; color:white">{{ form.as_table }}</div>
-            <input type="hidden" name="next" value="/" />
-            <input type="submit" value="Logowanie"/>
-        </form>
-    </div>
+        {% if user.is_authenticated %}
+            <p style="color: white">You are logged in {{ user.username }} </p>
+            <form action="logout.html" method="post"> {% csrf_token %}
+                <input type="submit" value="Logout" />
+            </form>
+            <form action="login.html">
+                <input type="submit" value="Your account">
+            </form>
+        {% else %}
+            <form action="." method="post"> {% csrf_token %}
 
+                <table align="left" style="text-align:right; color:white; text-align-last: right;">
+                            {{ form.as_table }}
+                </table>
+                <input align="left" type="hidden" name="next" value="/" />
+                <input align="left" type="submit" value="Login"/>
+
+            </form>
+            <form action="register.html">
+                <input type="submit" value="Register">
+            </form>
+        {% endif %}
+    </div>
     <div id="container">
         <div id="header"> <h1 style="text-align: center;">OurClinic</h1>
             <ul id="menu">

@@ -12,13 +12,12 @@ import logging
 # Create your models here.
 
 
-"""class UserProfileObject(models.Model):
-    pesel = models.CharField(max_length=11)
+class UserProfileObject(models.Model):
     first_name = models.CharField(max_length=256)
     surname = models.CharField(max_length=256)
-    password = models.CharField(max_length=256)
-    created_date = models.DateTimeField(default=timezone.now)
-    email = models.EmailField(max_length=256)"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+pesel_correct = re.compile(r'^[0-9]*$')
 
 
 class LoginForm(forms.Form):
@@ -26,14 +25,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="password", widget=forms.PasswordInput())
 
     def clean_username(self):
-        logger = logging.getLogger('django')
-        temp_name = self.cleaned_data['username']
-        logger.info("pesel: " + temp_name)
-        try:
-            user = User.objects.get(username=temp_name)
-            return temp_name
-        except ObjectDoesNotExist:
-            raise forms.ValidationError("Wrong pesel")
+        pesel = self.cleaned_data['username']
+        """if len(pesel) != 11:
+            raise forms.ValidationError("Wrong pesel length")
+        elif not pesel_correct.match(pesel):
+            raise forms.ValidationError("Pesel have unavailable chars")"""
+        return pesel
 
     def clean_password(self):
         logger = logging.getLogger('django')
@@ -50,11 +47,11 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="username")
+    username = forms.CharField(label="pesel")
     first_name = forms.CharField(label="first_name")
     surname = forms.CharField(label="surname")
     password = forms.CharField(label="password", widget=forms.PasswordInput())
-    password2 = forms.CharField(label="password2", widget=forms.PasswordInput())
+    password2 = forms.CharField(label="password (again)", widget=forms.PasswordInput())
     email = forms.EmailField(label="email")
 
     def clean_password2(self):
@@ -70,4 +67,9 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError("Passwords not equal")
 
     def clean_username(self):
-        return self.cleaned_data['username']
+        pesel = self.cleaned_data['username']
+        """if len(pesel) != 11:
+            raise forms.ValidationError("Wrong pesel length")
+        elif not pesel_correct.match(pesel):
+            raise forms.ValidationError("Pesel have unavailable chars")"""
+        return pesel

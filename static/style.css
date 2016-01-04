@@ -134,3 +134,8 @@
                 padding: 5px;
                 text-align:right;
             }
+
+            #id_username #id_password{
+                text-align: right;
+                color: white;
+            }
