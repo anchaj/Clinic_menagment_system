@@ -13,9 +13,12 @@ import logging
 
 
 class UserProfileObject(models.Model):
-    first_name = models.CharField(max_length=256)
-    surname = models.CharField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    city = models.CharField(max_length=256)
+    street = models.CharField(max_length=256)
+    local = models.CharField(max_length=256)
+    nfz = models.CharField(max_length=256)
+
 
 pesel_correct = re.compile(r'^[0-9]*$')
 
@@ -48,11 +51,15 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
     username = forms.CharField(label="pesel")
-    first_name = forms.CharField(label="first_name")
+    first_name = forms.CharField(label="first name")
     surname = forms.CharField(label="surname")
     password = forms.CharField(label="password", widget=forms.PasswordInput())
     password2 = forms.CharField(label="password (again)", widget=forms.PasswordInput())
     email = forms.EmailField(label="email")
+    city = forms.CharField(label="city")
+    street = forms.CharField(label="street")
+    local = forms.CharField(label="local")
+    nfz = forms.CharField(label="nfz branch")
 
     def clean_password2(self):
         logger = logging.getLogger('django')
@@ -68,8 +75,8 @@ class RegisterForm(forms.Form):
 
     def clean_username(self):
         pesel = self.cleaned_data['username']
-        """if len(pesel) != 11:
+        if len(pesel) != 11:
             raise forms.ValidationError("Wrong pesel length")
         elif not pesel_correct.match(pesel):
-            raise forms.ValidationError("Pesel have unavailable chars")"""
+            raise forms.ValidationError("Pesel have unavailable chars")
         return pesel

@@ -87,12 +87,15 @@ def register(request):
             user = User.objects.create_user(
               username=form.cleaned_data['username'],
               password=form.cleaned_data['password'],
-              email=form.cleaned_data['email']
+              email=form.cleaned_data['email'],
+              first_name=form.cleaned_data['first_name'],
+              last_name=form.cleaned_data['surname']
             )
-
-            user_profile = UserProfileObject.objects.create(first_name=form.cleaned_data['first_name'],
-                                                            surname=form.cleaned_data['surname'],
-                                                            user=user)
+            user_profile = UserProfileObject.objects.create(user=user, city=form.cleaned_data['city'],
+                                                            street=form.cleaned_data['street'],
+                                                            local=form.cleaned_data['local'],
+                                                            nfz=form.cleaned_data['nfz'])
+            logger.info(str(request.POST))
             user.is_active = True
             user.save()
             user_profile.save()
